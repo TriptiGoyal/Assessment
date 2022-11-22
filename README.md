@@ -44,24 +44,25 @@ Open the command line in the source code folder.
 
 ##### Build project with below command :
 
-```bash
+```
 mvn clean package
 ```
 
 ##### Run the project using below command :
 
-```bash
+```
 $ java -jar target/recipe-app-0.0.1-SNAPSHOT.jar
 ```
 
 ##### Open the swagger-ui with the below link :
 
-```bash
+```
 http://localhost:8081/swagger-ui.html#/
 ```
 
 ##### Open the H2 database with the below link 
 
-```bash
+```
 http://localhost:8081/h2-console
 ```
+
