@@ -36,7 +36,7 @@ Java 1.8
 
 Maven 3.x
 
-## Installation
+# Installation
 
 Install recipe-app project with Java 1.8 and Maven installed.
 
@@ -66,3 +66,98 @@ http://localhost:8081/swagger-ui.html#/
 http://localhost:8081/h2-console
 ```
 
+## REST APIs
+
+The REST APIs will return proper response code in the case of success or error cases.
+Following are the HTTP response codes that will be returned from the APIs :
+200-OK, 201-CREATED, 400-BAD REQUEST, 404-NOT FOUND, 500-INTERNAL SERVER ERROR
+
+#### Below are API urls :
+
+##### To fetch all ingredients :
+
+curl --location --request GET 'http://localhost:8081/api/v1/ingredients/' \
+--header 'Accept: application/json'
+
+##### To Add new Ingredient :
+
+curl --location --request POST 'http://localhost:8081/api/v1/ingredients/' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "ingredientName": "Tomatoes",
+  "ingredientQuantity": "1 Kg"
+}'
+
+##### To Delete an Ingredient :
+
+curl --location --request DELETE 'http://localhost:8081/api/v1/ingredients/?ingredientId=7' \
+--header 'Accept: application/json'
+
+##### To fetch Ingredient By ID :
+
+curl --location --request GET 'http://localhost:8081/api/v1/ingredients/8' \
+--header 'Accept: application/json'
+
+##### To fetch all recipes :
+
+curl -i -H 'Accept: application/json' http://localhost:8081/api/v1/recipes
+
+##### To fetch recipe by ID :
+
+curl --location --request GET 'http://localhost:8081/api/v1/recipes/1' \
+--header 'Accept: application/json'
+
+##### To Add new recipe :
+
+curl --location --request POST 'http://localhost:8081/api/v1/recipes/' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "ingredientIds": [
+    1,
+    2
+  ],
+  "name": "Mix Vegetable",
+  "recipeInstructions": "Chop the onion, potato and tomato, stir and fry, ready to serve",
+  "recipeType": "Vegetarian",
+  "servingCapacity": 4
+}'
+
+##### To Delete Recipe By ID :
+
+curl --location --request DELETE 'http://localhost:8081/api/v1/recipes?id=5' \
+--header 'Accept: application/json'
+
+##### To Update Recipe  :
+
+curl --location --request PATCH 'http://localhost:8081/api/v1/recipes' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "ingredientIds": [
+    3,
+    4
+  ],
+  "name": "Potato",
+  "recipeId": 1,
+  "recipeInstructions": "Chop the potatoes and deep fry, Ready to serve !!",
+  "recipeType": "VEGETARIAN",
+  "servingCapacity": 7
+}'
+
+##### To Search Recipe :
+
+curl --location --request POST 'http://localhost:8081/api/v1/recipes/search' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "criteria": [
+    {
+      "filterParamKey": "name",
+      "operation": "nc",
+      "searchValue": "Pasta"
+    }
+  ],
+  "filterOption": "all"
+}'
